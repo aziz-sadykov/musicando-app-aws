@@ -13,6 +13,17 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '10.x'
+  
+      - name: Sign Android release
+        uses: r0adkll/sign-android-release@v1
+        with:
+          releaseDirectory: android/app/build/outputs/apk/release
+          signingKeyBase64: ${{ secrets.MUSICANDO_UPLOAD_STORE_PASSWORD64 }}
+          alias: ${{ secrets.MUSICANDO_UPLOAD_KEY_ALIAS }}
+          keyStorePassword: ${{ secrets.MUSICANDO_UPLOAD_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.MUSICANDO_UPLOAD_KEY_PASSWORD }}
+          signedReleaseFile: android/app
+
       - run: |
           yarn install
           echo "MUSICANDO_UPLOAD_KEY_ALIAS=${{secrets.MUSICANDO_UPLOAD_KEY_ALIAS}}\nMUSICANDO_UPLOAD_KEY_PASSWORD=${{secrets.MUSICANDO_UPLOAD_KEY_PASSWORD}}\nMUSICANDO_UPLOAD_STORE_FILE=${{secrets.MUSICANDO_UPLOAD_STORE_FILE}}\nMUSICANDO_UPLOAD_STORE_PASSWORD=${{secrets.MUSICANDO_UPLOAD_STORE_PASSWORD}}" >> .env
