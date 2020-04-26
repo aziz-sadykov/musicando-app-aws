@@ -29,6 +29,7 @@ import StepDot from '~/components/StepDot/StepDot';
 import Profile from '~/components/Profile/Profile';
 import ImagePicker, { ImagePickerOptions } from 'react-native-image-picker';
 import Permissions from '~/utils/Permissions';
+import TextArea from '~/components/Form/TextArea';
 
 interface RegisterPageProps extends PageNavProps<'RegisterPage'> {}
 
@@ -40,6 +41,7 @@ interface RegisterData {
   password: string;
   birthdate: string;
   phoneNumber: string;
+  description: string;
   avatar: string;
 }
 
@@ -58,6 +60,7 @@ const DEFAULT_DATA: RegisterData = {
   password: '',
   birthdate: '',
   phoneNumber: '',
+  description: '',
   avatar: '',
 };
 
@@ -89,6 +92,14 @@ const DEFAULT_DATA_ERROR: RegisterDataError = {
   phoneNumber: {
     isInvalid: false,
     message: 'Número de telefone inválido.',
+  },
+  description: {
+    isInvalid: false,
+    message: 'Fale um pouco sobre você.',
+  },
+  avatar: {
+    isInvalid: false,
+    message: 'Foto inválida',
   },
 };
 
@@ -209,6 +220,10 @@ const RegisterPage: React.FunctionComponent<RegisterPageProps> = ({
   useEffect(() => {
     if (response.success) {
       navigation.navigate('EventsPage');
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'EventsPage' }],
+      });
     }
   }, [response]);
 
@@ -357,6 +372,15 @@ const RegisterPage: React.FunctionComponent<RegisterPageProps> = ({
                   onChangeText={(e: string) => handleChange(e, 'nickName')}
                   errorIsInvalid={dataError.nickName.isInvalid}
                   errorMessage={dataError.nickName.message}
+                />
+                <TextArea
+                  multiline={true}
+                  placeholder="Description"
+                  value={dataForm.description}
+                  maxLength={200}
+                  onChangeText={(e: string) => handleChange(e, 'description')}
+                  errorIsInvalid={dataError.description.isInvalid}
+                  errorMessage={dataError.description.message}
                 />
               </View>
             )}

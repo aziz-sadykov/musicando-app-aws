@@ -1,5 +1,10 @@
 import styled, { css } from 'styled-components';
-import { View } from 'react-native';
+import { View, TextInputProps } from 'react-native';
+import { IconInterface } from '~/Types/Common';
+export interface InputProps extends TextInputProps, IconInterface {
+  errorIsInvalid?: boolean;
+  errorMessage?: string;
+}
 
 export const BaseTextInputStyle = css`
   flex: 1;

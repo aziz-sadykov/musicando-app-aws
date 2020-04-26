@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import {
   TextInput,
-  TextInputProps,
   TouchableOpacity,
   Text,
   TouchableOpacityProps,
@@ -14,14 +13,9 @@ import {
   BaseInputsContainer,
   BaseInputsContainerStyle,
   BaseTextInputStyle,
+  InputProps,
 } from './Common';
-import { IconInterface } from '~/Types/Common';
 import Icon from '../Icon/Icon';
-
-interface InputProps extends TextInputProps, IconInterface {
-  errorIsInvalid?: boolean;
-  errorMessage?: string;
-}
 
 export const Input: React.FunctionComponent<InputProps> = ({
   children,
