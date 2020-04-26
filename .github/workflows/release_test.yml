@@ -1,0 +1,24 @@
+name: Release
+
+on:
+  push:
+    tags: 
+      - "*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+      - run: |
+          yarn install
+          echo "MUSICANDO_UPLOAD_KEY_ALIAS=${{secrets.MUSICANDO_UPLOAD_KEY_ALIAS}}\nMUSICANDO_UPLOAD_KEY_PASSWORD=${{secrets.MUSICANDO_UPLOAD_KEY_PASSWORD}}\nMUSICANDO_UPLOAD_STORE_FILE=${{secrets.MUSICANDO_UPLOAD_STORE_FILE}}\nMUSICANDO_UPLOAD_STORE_PASSWORD=${{secrets.MUSICANDO_UPLOAD_STORE_PASSWORD}}" >> .env
+          yarn build:release
+      - uses: ncipollo/release-action@v1.6.1
+        with:
+          name: Musicando App
+          bodyFile: "./"
+          token: ${{ secrets.GITHUB_TOKEN }}
