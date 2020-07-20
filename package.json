@@ -25,7 +25,7 @@
     "babel-plugin-root-import": "^6.5.0",
     "babel-plugin-styled-components": "^1.10.7",
     "install": "^0.13.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "polished": "^3.5.1",
     "query-string": "^6.12.1",
     "react": "16.11.0",
