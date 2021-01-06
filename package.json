@@ -21,7 +21,7 @@
     "@react-navigation/stack": "^5.2.11",
     "@types/lodash": "^4.14.150",
     "@types/styled-components": "^5.1.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "babel-plugin-root-import": "^6.5.0",
     "babel-plugin-styled-components": "^1.10.7",
     "install": "^0.13.0",
